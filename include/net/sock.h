@@ -1424,6 +1424,7 @@ void sock_rfree(struct sk_buff *skb);
 int sock_setsockopt(struct socket *sock, int level, int op,
 		    char __user *optval, unsigned int optlen);
 
+<<<<<<< HEAD
 int sock_getsockopt(struct socket *sock, int level, int op,
 		    char __user *optval, int __user *optlen);
 struct sk_buff *sock_alloc_send_skb(struct sock *sk, unsigned long size,
@@ -1434,6 +1435,24 @@ struct sk_buff *sock_alloc_send_pskb(struct sock *sk, unsigned long header_len,
 void *sock_kmalloc(struct sock *sk, int size, gfp_t priority);
 void sock_kfree_s(struct sock *sk, void *mem, int size);
 void sk_send_sigurg(struct sock *sk);
+=======
+extern int			sock_getsockopt(struct socket *sock, int level,
+						int op, char __user *optval,
+						int __user *optlen);
+extern struct sk_buff		*sock_alloc_send_skb(struct sock *sk,
+						     unsigned long size,
+						     int noblock,
+						     int *errcode);
+extern struct sk_buff		*sock_alloc_send_pskb(struct sock *sk,
+						      unsigned long header_len,
+						      unsigned long data_len,
+						      int noblock,
+						      int *errcode);
+extern void *sock_kmalloc(struct sock *sk, int size,
+			  gfp_t priority);
+extern void sock_kfree_s(struct sock *sk, void *mem, int size);
+extern void sk_send_sigurg(struct sock *sk);
+>>>>>>> a3dd068daec (BACKPORT: net: include/net/sock.h cleanup)
 
 #ifdef CONFIG_CGROUPS
 void sock_update_classid(struct sock *sk);
@@ -1447,6 +1466,7 @@ static inline void sock_update_classid(struct sock *sk)
  * Functions to fill in entries in struct proto_ops when a protocol
  * does not implement a particular function.
  */
+<<<<<<< HEAD
 int sock_no_bind(struct socket *, struct sockaddr *, int);
 int sock_no_connect(struct socket *, struct sockaddr *, int, int);
 int sock_no_socketpair(struct socket *, struct socket *);
@@ -1466,6 +1486,39 @@ int sock_no_mmap(struct file *file, struct socket *sock,
 		 struct vm_area_struct *vma);
 ssize_t sock_no_sendpage(struct socket *sock, struct page *page, int offset,
 			 size_t size, int flags);
+=======
+extern int                      sock_no_bind(struct socket *,
+					     struct sockaddr *, int);
+extern int                      sock_no_connect(struct socket *,
+						struct sockaddr *, int, int);
+extern int                      sock_no_socketpair(struct socket *,
+						   struct socket *);
+extern int                      sock_no_accept(struct socket *,
+					       struct socket *, int);
+extern int                      sock_no_getname(struct socket *,
+						struct sockaddr *, int *, int);
+extern unsigned int             sock_no_poll(struct file *, struct socket *,
+					     struct poll_table_struct *);
+extern int                      sock_no_ioctl(struct socket *, unsigned int,
+					      unsigned long);
+extern int			sock_no_listen(struct socket *, int);
+extern int                      sock_no_shutdown(struct socket *, int);
+extern int			sock_no_getsockopt(struct socket *, int , int,
+						   char __user *, int __user *);
+extern int			sock_no_setsockopt(struct socket *, int, int,
+						   char __user *, unsigned int);
+extern int                      sock_no_sendmsg(struct kiocb *, struct socket *,
+						struct msghdr *, size_t);
+extern int                      sock_no_recvmsg(struct kiocb *, struct socket *,
+						struct msghdr *, size_t, int);
+extern int			sock_no_mmap(struct file *file,
+					     struct socket *sock,
+					     struct vm_area_struct *vma);
+extern ssize_t			sock_no_sendpage(struct socket *sock,
+						struct page *page,
+						int offset, size_t size,
+						int flags);
+>>>>>>> a3dd068daec (BACKPORT: net: include/net/sock.h cleanup)
 
 /*
  * Functions to fill in entries in struct proto_ops when a protocol
@@ -1487,6 +1540,12 @@ void sk_common_release(struct sock *sk);
 /*
  *	Default socket callbacks and setup code
  */
+<<<<<<< HEAD
+=======
+
+/* Initialise core socket variables */
+extern void sock_init_data(struct socket *sock, struct sock *sk);
+>>>>>>> a3dd068daec (BACKPORT: net: include/net/sock.h cleanup)
 
 /* Initialise core socket variables */
 void sock_init_data(struct socket *sock, struct sock *sk);
